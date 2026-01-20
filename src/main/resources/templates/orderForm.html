@@ -41,15 +41,18 @@
             <br/>
 
             <h3>Here's how I'll pay...</h3>
-            <label for="ccNumber">Credit Card #: </label>
+            <label for="ccNumber">Credit Card: </label>
             <input type="text" th:field="*{ccNumber}"/>
             <br/>
+
             <label for="ccExpiration">Expiration: </label>
             <input type="text" th:field="*{ccExpiration}"/>
             <br/>
+
             <label for="ccCVV">CVV: </label>
             <input type="text" th:field="*{ccCVV}"/>
             <br/>
+
             <input type="submit" value="Submit Order"/>
         </form>
     </body>
