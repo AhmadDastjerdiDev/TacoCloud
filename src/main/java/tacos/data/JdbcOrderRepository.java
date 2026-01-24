@@ -1,11 +1,11 @@
 package tacos.data;
 
-import org.apache.catalina.LifecycleState;
 import org.springframework.asm.Type;
 import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.PreparedStatementCreatorFactory;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import tacos.IngredientRef;
 import tacos.Taco;
@@ -16,6 +16,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+@Repository
 public class JdbcOrderRepository implements OrderRepository {
 
     private JdbcOperations jdbcOperations;
