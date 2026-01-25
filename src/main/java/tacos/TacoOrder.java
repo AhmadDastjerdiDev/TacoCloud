@@ -3,8 +3,9 @@ package tacos;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
-import lombok.CustomLog;
+
 import lombok.Data;
+
 import org.hibernate.validator.constraints.CreditCardNumber;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
@@ -47,14 +48,16 @@ public class TacoOrder implements Serializable {
     @NotBlank(message = "Postal code is required")
     private String deliveryZip;
 
-
+    @Column("cc_number")
     @CreditCardNumber(message = "Not a valid credit card number")
     private String ccNumber;
 
+    @Column("cc_expiration")
     @Pattern(regexp = "^(0[1-9]|1[0-2])(\\/)([2-9][0-9])$",
             message = "Must be formatted MM/YY")
     private String ccExpiration;
 
+    @Column("cc_cvv")
     @Digits(integer = 3, fraction = 0, message = "Invalid CVV")
     private String ccCVV;
 
