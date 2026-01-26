@@ -7,17 +7,21 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.ManyToMany;
 import java.util.Date;
 import java.util.List;
 
 @Data
-@Table
+@Entity
 public class Taco {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column("created_at")
     private Date createdAt = new Date();
 
     @NotNull
@@ -25,8 +29,11 @@ public class Taco {
     @Column("name")
     private String name;
 
-    @NotNull
     @Size(min = 1, message = "You must choose at least 1 ingredient")
-    @Column("ingredients")
+    @ManyToMany
     private List<Ingredient> ingredients;
+
+    public void addIngredient(Ingredient ingredient){
+        this.ingredients.add(ingredient);
+    }
 }
