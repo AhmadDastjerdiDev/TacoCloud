@@ -13,9 +13,11 @@ import java.util.List;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
+
     @Override
     public void addViewControllers(ViewControllerRegistry registry){
         registry.addViewController("/").setViewName("home");
+        registry.addViewController("/login");
     }
 
     @Bean
@@ -34,4 +36,5 @@ public class WebConfig implements WebMvcConfigurer {
             repo.save(new Ingredient("SRCR", "Sour Cream", Ingredient.Type.SAUCE));
         };
     }
+
 }
