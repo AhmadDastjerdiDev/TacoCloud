@@ -36,5 +36,4 @@ public class WebConfig implements WebMvcConfigurer {
             repo.save(new Ingredient("SRCR", "Sour Cream", Ingredient.Type.SAUCE));
         };
     }
-
 }

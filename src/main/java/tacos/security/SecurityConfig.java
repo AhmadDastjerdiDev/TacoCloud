@@ -54,11 +54,15 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http.authorizeHttpRequests(auth ->auth
-                .requestMatchers("/design", "/orders").hasRole("USER")
-                .requestMatchers("/", "/**").permitAll()
+                        .requestMatchers("/design", "/orders").hasRole("USER")
+                        .requestMatchers("/", "/**").permitAll()
                 )
                 .formLogin(form -> form
-                .loginPage("/login").permitAll().defaultSuccessUrl("/design")
+                        .loginPage("/login").permitAll().defaultSuccessUrl("/design")
+                )
+                .oauth2Login(oauth2 -> oauth2
+                        .loginPage("/login")
+                        .defaultSuccessUrl("/design")
                 )
                 .logout(logout -> logout.permitAll());
 
