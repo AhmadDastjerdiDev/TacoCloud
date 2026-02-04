@@ -1,5 +1,10 @@
 
 spring:
+  profiles:
+    active:
+      - prod
+      - dev
+      - qa
   datasource:
     url: jdbc:mysql://localhost/tacocloud
     hikari:
