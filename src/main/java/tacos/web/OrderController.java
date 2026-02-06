@@ -22,13 +22,16 @@ import tacos.data.OrderRepository;
 @Slf4j
 @Controller
 @RequestMapping("/orders")
-@SessionAttributes("tacoOrder")
+@SessionAttributes("order")
 @ConfigurationProperties(prefix = "taco.orders")
 public class OrderController {
 
     private OrderProps props;
 
     private OrderRepository orderRepo;
+
+    public OrderController(){
+    }
 
     public OrderController(OrderRepository orderRepo, OrderProps props){
         this.orderRepo = orderRepo;
