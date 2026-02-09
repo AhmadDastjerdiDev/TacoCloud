@@ -2,6 +2,9 @@ package tacos.web.api;
 
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import tacos.Taco;
@@ -26,7 +29,18 @@ public class TacoController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Taco> tacoById(@PathVariable("id") Long id){
-        return tacoRepo.findById(id);
+    public ResponseEntity<Taco> tacoById(@PathVariable("id") Long id){
+        Optional<Taco> optionalTaco = tacoRepo.findById(id);
+
+        if(optionalTaco.isPresent()){
+            return new ResponseEntity<>(optionalTaco.get(), HttpStatus.OK);
+        }
+        return new ResponseEntity<>((HttpHeaders) null, HttpStatus.NOT_FOUND);
+    }
+
+    @PostMapping(consumes = "application/json")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Taco postTaco(@RequestBody Taco taco){
+        return tacoRepo.save(taco);
     }
 }
